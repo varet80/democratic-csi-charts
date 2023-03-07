@@ -5,7 +5,8 @@
 nameOverride: ""
 fullnameOverride: ""
 
-extraCaCerts:
+# -- Add einline extra CA Certificates
+extraCaCerts: ""
 #extraCaCerts: |-
 #  -----BEGIN CERTIFICATE-----
 #  ...
@@ -19,18 +20,21 @@ driver:
   # NOTE: if setting an existing secret you must still set `driver.config.driver`
   # to the corresponding value that you place in the secret as the value is used
   # by the chart for other purposes beyond secret creation
+  # -- Use existing Configuration Secret
   existingConfigSecret:
+  # -- Driver configuration (Truenas, ZFS Onlinux etc) - read more here
   config: {}
     #driver: 
     # rest of per-driver config data/syntax
     # ...
 
-# https://kubernetes-csi.github.io/docs/csi-driver-object.html
+# -- configure csiDriver more details: https://kubernetes-csi.github.io/docs/csi-driver-object.html
 csiDriver:
-  # should be globally unique for a given cluster
+  # -- Name of the driver should be globally unique for a given cluster
   name:
+  # -- drive rversion
   version: 1.5.0
-  # create the kubernetes CSIDriver
+  # --  create the kubernetes CSIDriver
   enabled: true
   attachRequired: false
   podInfoOnMount: true
@@ -51,15 +55,21 @@ csiDriver:
   # k8s 1.19+
   # storageCapacity: false
 
+
 controller:
+  # -- Enable Controller, taking care of Driver deployment
   enabled: true
   rbac:
+    # -- Use RBAC
     enabled: true
+    # -- Openshift specific RBAC changes
     openshift:
       # set to true if running on openshift *and* you have need
       # ie: hostNetwork, hostIPC, etc are turned on
       privileged: false
+  # -- Controller replicas
   replicaCount: 1
+  # -- use of host network
   hostNetwork: false
   hostAliases: []
   hostIPC: false
@@ -69,6 +79,7 @@ controller:
   
   # deployment = deploy controller parts in a distinct deployment
   # node       = deploy controller as sidecars with node daemonset
+  # -- Deployment strategy or Node sidecars with CSI daemonset
   strategy: deployment
 
   # https://kubernetes-csi.github.io/docs/external-attacher.html

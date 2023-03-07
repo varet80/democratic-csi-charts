@@ -42,8 +42,6 @@ if using k8s < 1.17 please use chart version 0.5.0
 | travisghansen | <a@b.c> | <https://github.com/travisghansen> |
 | SecondMaintainer | <b@c.d> |  |
 
-# Values
-
 ## Values
 
 | Key | Type | Default | Description |

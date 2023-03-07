@@ -3,3 +3,15 @@ appVersion: "1.0"
 description: csi storage for container orchestration systems
 name: democratic-csi
 version: 0.13.5
+
+maintainers:
+  - name: travisghansen
+    email: a@b.c
+    url: https://github.com/travisghansen
+  - name: SecondMaintainer
+    email: b@c.d
+sources:
+  - https://github.com/democratic-csi/democratic-csi
+  - https://github.com/democratic-csi/charts
+  - https://github.com/container-storage-interface/spec
+  - https://kubernetes.io/blog/2019/01/15/container-storage-interface-ga/
